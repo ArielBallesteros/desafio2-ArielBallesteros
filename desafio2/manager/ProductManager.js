@@ -35,7 +35,7 @@ export default class ProductManager {
   deleteProducById = async (id) => {
     const data =  await fs.promises.readFile(path, "utf-8");
     const products = JSON.parse(data)
-    const product = products.find(product => product.id === id)
+    const product = products.findIndex(product => product.id === id)
 
     if(product){
       products.splice(product,1)
@@ -56,7 +56,7 @@ export default class ProductManager {
     }
   };
 
-  DeleteProducts = async () => {
+  DeleteAllProducts = async () => {
     this.writeFile([]);
   };
 }
