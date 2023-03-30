@@ -32,14 +32,27 @@ export default class ProductManager {
     return product;
   };
 
-  getProducById = async (id) => {
-    let product = await this.getProducts.find(
-      (product) => product.id === id);
+  deleteProducById = async (id) => {
+    const data =  await fs.promises.readFile(path, "utf-8");
+    const products = JSON.parse(data)
+    const product = products.find(product => product.id === id)
 
-    if (product) {
-      return product;
-    } else {
-      return console.log("Not Found");
+    if(product){
+      products.splice(product,1)
+      return products
+    }else{
+      console.log("producto no encontrado")
+    }
+
+  };
+
+  getProducById = async (id) => {
+    const data =  await fs.promises.readFile(path, "utf-8");
+    const products = JSON.parse(data)
+    const obj = products.find(obj => obj.id ===id)
+
+    if(obj){
+      return obj
     }
   };
 

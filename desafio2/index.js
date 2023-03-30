@@ -20,8 +20,11 @@ const env = async () => {
     let products = await manager.getProducts()
     console.log(products)
 
-    let productID = await manager.getProducById(1);
+    let productID = await manager.getProducById(5);
     console.log(productID)
+
+    let borrarProdPorID = await manager.deleteProducById(9);
+    console.log(borrarProdPorID)
 }
 
 env()
