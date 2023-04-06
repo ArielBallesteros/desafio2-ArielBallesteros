@@ -8,12 +8,12 @@ const PORT = 8080;
 const app = express();
 
 app.listen(PORT, () => {
-  console.log(`Servidor funconando en el puerto ${PORT}`);
+  console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/products", async (req, res) => {
+app.get('/products', async (req, res) => {
   const products =( await manager.getProducts());
   const limite = req.query.limite;
   if (!limite) {
@@ -24,15 +24,16 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.get("/products/:id", async (req, res) => {
-  const id = req.params.id;
-  const product = (await manager.getProductById(id));
-
-  console.log(product);
-
-  if (!product) {
-    return res.send("Producto no encontrado");
-  }
-
-  res.send({ product });
+app.get('/products/:id', async (req, res) => {
+    const id = req.params.id; 
+    const products = ( await manager.getProducts());
+  
+    
+    const productoEncontrado = products.find(producto => producto.id === id);
+  
+    if (productoEncontrado) { 
+      res.send(productoEncontrado);
+    } else { 
+      res.send(`No se encontró ningún producto con el id ${id}`);
+    }
 });
