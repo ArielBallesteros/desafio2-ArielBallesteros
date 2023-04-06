@@ -15,11 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/products', async (req, res) => {
   const products =( await manager.getProducts());
-  const limite = req.query.limite;
-  if (!limite) {
+  const limit = req.query.limit;
+  if (!limit) {
     res.send({ products });
   } else {
-    let resultadosFiltrados = products.slice(0, limite);
+    let resultadosFiltrados = products.slice(0, limit);
     res.send(resultadosFiltrados);
   }
 });
@@ -29,7 +29,7 @@ app.get('/products/:id', async (req, res) => {
     const products = ( await manager.getProducts());
   
     
-    const productoEncontrado = products.find(producto => producto.id === id);
+    const productoEncontrado = products.find(product => product.id == id);
   
     if (productoEncontrado) { 
       res.send(productoEncontrado);
