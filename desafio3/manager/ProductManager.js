@@ -28,12 +28,12 @@ export default class ProductManager {
         product.id = products[products.length - 1].id + 1;
       }
 
-      let idProd = products.find((prod)=> prod.id == product.id);
+      let idProd = products.find((prod)=> prod.id === product.id);
       if (idProd){
         product.id+1
       }
 
-      let codigo = products.find((prod) => prod.code == product.code);
+      let codigo = products.find((prod) => prod.code === product.code);
       if (codigo) {
         return console.log("El code que ingreso ya existe, ingrese otro code");
       } else {
@@ -50,6 +50,7 @@ export default class ProductManager {
       console.log(error);
     }
   };
+
 
   deleteProductById = async (id) => {
     try {
@@ -72,6 +73,7 @@ export default class ProductManager {
       console.log(error);
     }
   };
+
 
   getProductById = async (id) => {
     try {
